@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+
+  <body>
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+    <div class="logo">
+      <img src="/kuetlogo.png" alt="Logo" width="60" />
+    </div>
+    <div id="title">
+      <h2>Study<span style="color: #00a651">Materials</span></h2>
+    </div>
+    <div class="profile-card">
+      <div class="avatar" style="margin-top: 10px">
+        <img src="1.png" alt="profile-img" />
+      </div>
+      <div class="salutation">
+        <div class="name" style="user-select: none;">Wel<span style="color: #00a651">come</span></div>
+        <div class="designation" style="margin-bottom: 10px; user-select: none;">
+          Dr. Md. Mostafizur Rahman sir
+        </div>
+      </div>
+      <div class="options">
+        <button
+          class="status"
+          onclick="navigateTo('http://192.168.0.102:3012')"
+        >
+          <img src="folder.png" alt="" class="btn-img" />
+          <span></span>
+        </button>
+        <button
+          class="status"
+          onclick="navigateTo('http://192.168.0.102:3011')"
+        >
+          <img src="profile.png" alt="" class="btn-img" />
+          <span></span>
+        </button>
+        <button
+          class="status"
+          onclick="navigateTo('http://192.168.0.102:3014')"
+        >
+          <img src="pen.png" alt="" class="btn-img" />
+          <span></span>
+        </button>
+        <button class="more" id="more-btn">
+          <img src="menu.png" alt="" class="btn-img" />
+        </button>
+        <div class="more-options notVisible" id="more-options">
+          <div class="option" onclick="navigateTo('http://192.168.0.102:3012')">Question Bank</div>
+          <div class="option" onclick="navigateTo('http://192.168.0.102:3012')">Books</div>
+          <div class="option" onclick="navigateTo('http://192.168.0.102:3012')">Lab Manuals</div>
+          <div class="option" onclick="navigateTo('http://192.168.0.102:3012')">Slideshows</div>
+          <div class="option" onclick="navigateTo('http://192.168.0.102:3012')">1st year</div>
+          <div class="option" onclick="navigateTo('http://192.168.0.102:3012')">2nd year</div>
+          <div class="option" onclick="navigateTo('http://192.168.0.102:3012')">3rd year</div>
+          <div class="option" onclick="navigateTo('http://192.168.0.102:3012')">4th year</div>
+          <div class="option" onclick="navigateTo('http://192.168.0.102:2998/login')">Logout</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      ©2024, Designed and developed by
+      <a
+        href="https://teamsiliconx.github.io/aboutus"
+        style="color: #00a651; text-decoration: none"
+        id="Siliconx"
+        >Siliconx Softwares</a
+      >(ECE, KUET). Powered by Central Computer Center(KUET). All rights
+      reserved.
+    </div>
+    <script src="scripts.js"></script>
+    <script>
+      // Function to show progress bar for 1 second
+      function showProgressBar(callback) {
+        // Show progress bar
+        document.getElementById("progress-bar").style.display = "block";
+
+        // Hide progress bar after 1 second
+        setTimeout(function () {
+          document.getElementById("progress-bar").style.display = "none";
+          if (callback) {
+            callback(); // Execute callback function
+          }
+        }, 1000);
+      }
+
+      function navigateTo(url) {
+        showProgressBar(function () {
+          window.location.href = url; // Redirect after progress bar animation completes
+        });
+      }
+
+
+      window.addEventListener("load", function () {
+        showProgressBar(); // Show progress bar on page load
+      });
+
+      
+    </script>
+  </body>
+</html>
