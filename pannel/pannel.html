@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/ico" href="favicon.ico">
+        <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+        <title>Teacher's vault(Dr.Sheikh Md Rabiul Islam)</title>
+        <style>
+          body {
+            font-family: Manrope, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+          }
+          .logo {
+            margin-top: 50px; /* Adjust margin as needed */
+        }
+
+          .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+          }
+            #progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: transparent;
+        z-index: 9999;
+      }
+
+      #progress-bar {
+        height: 4px;
+        background-color: #00a651;
+        width: 0;
+        animation: progressBarAnimation 1s forwards;
+      }
+
+      @keyframes progressBarAnimation {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+
+          .title
+          {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-weight: bolder;
+          }
+          h1 {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+          ul {
+            list-style-type: none;
+            padding: 0;
+          }
+          li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+          }
+          .delete-btn {
+            background-color: #f22c2f;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-left: 10px;
+          }
+          .share-btn {
+            background-color: #00a651;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-left: 10px;
+          }
+          .upload-btn, .confirm-btn {
+            width: auto;
+            height: auto;
+            border: none;
+            cursor: pointer;
+            background-size: cover;
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-bottom:20px;
+          }
+          .upload-btn {
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+          }
+          .confirm-btn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            transition: background-color 0.3s;
+          }
+
+          .upload-section {
+            margin-top: 20px;
+          }
+          .file-upload-input {
+            display: none;
+          }
+          .footer {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 10px 0;
+            font-size:12px;
+        }
+
+        @media (width < 768px)
+        {
+        .logo {
+            display:none;
+        }
+            .title
+            {
+            display:none;
+            }
+            .container
+            {
+              margin-top:-20px;
+              border-radius:0px;
+            }
+
+            .footer
+            {
+            font-size:10px;
+            }
+        }
+        </style>
+    </head>
+    <body>
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+    <div class="logo">
+        <img src="/kuetlogo.png" alt="Logo" width="100">
+    </div>
+    <h1 class="title">
+    Teacher's <span style="color: #00a651">Vault</span>
+    </h1>
+        <div class="container">
+            <h1>My Files</h1>
+            <ul>
+            </ul>
+            <div class="upload-section">
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" accept=".txt,.pdf,.doc,.docx,.jpg,.png,.gif" class="file-upload-input" id="file-upload">
+                    <label for="file-upload" class="upload-btn">Upload File</label>
+                    <button type="submit" class="confirm-btn" style="display: none;" id="confirm">Confirm</button>
+                </form>
+            </div>
+        </div>
+        <!-- Second container -->
+        <div class="container">
+            <h1>Student Corner</h1>
+            <ul>
+            </ul>
+        </div>
+        <div class="footer">
+    ©2024, Designed and developed by
+        <a
+          href="https://teamsiliconx.github.io/aboutus"
+          style="color: #00a651; text-decoration: none;"
+          >Siliconx Softwares</a
+        >(ECE, KUET). Powered by Central Computer Center(KUET). All rights reserved.
+</div>
+
+        <script>
+         window.addEventListener("load", function () {
+        showProgressBar(); // Show progress bar on page load
+      });
+
+      // Function to show progress bar for 1 second
+      function showProgressBar(callback) {
+        // Show progress bar
+        document.getElementById("progress-bar").style.display = "block";
+
+        // Hide progress bar after 1 second
+        setTimeout(function () {
+          document.getElementById("progress-bar").style.display = "none";
+          if (callback) {
+            callback(); // Execute callback function
+          }
+        }, 1000);
+      }
+
+      // Attach click event listener to "upload" button
+      document
+        .getElementById("confirm")
+        .addEventListener("click", function (event) {
+          showProgressBar(); // Show progress bar when button is clicked
+        });
+
+
+
+
+
+          function deleteFile(fileName) {
+            if (confirm("Are you sure you want to delete this file?")) {
+              fetch('/delete/' + encodeURIComponent(fileName), {
+                method: 'DELETE'
+              })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Failed to delete file');
+                }
+                location.reload();
+              })
+              .catch(error => {
+                console.error('Error deleting file:', error);
+              });
+            }
+          }
+
+          function deleteSharedFile(fileName) {
+            if (confirm("Are you sure you want to delete this shared file?")) {
+              fetch('/delete-shared/' + encodeURIComponent(fileName), {
+                method: 'DELETE'
+              })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Failed to delete shared file');
+                }
+                location.reload();
+              })
+              .catch(error => {
+                console.error('Error deleting shared file:', error);
+              });
+            }
+          }
+
+          function shareFile(fileName) {
+            if (confirm("Are you sure you want to share this file?")) {
+              fetch('/share/' + encodeURIComponent(fileName), {
+                method: 'POST'
+              })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Failed to share file');
+                }
+                location.reload();
+              })
+              .catch(error => {
+                console.error('Error sharing file:', error);
+              });
+            }
+          }
+
+          document.getElementById("file-upload").addEventListener("change", function() {
+            document.querySelector(".confirm-btn").style.display = "inline-block";
+          });
+        </script>
+    </body>
+    </html>
