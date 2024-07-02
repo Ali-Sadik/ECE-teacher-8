@@ -1,35 +1,73 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/ico" href="favicon.ico">
-        <link
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-        <title>Teacher's vault(Dr.Sheikh Md Rabiul Islam)</title>
-        <style>
-          body {
-            font-family: Manrope, sans-serif;
-            background-color: white;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-          }
-          .logo {
-            margin-top: 50px; /* Adjust margin as needed */
-        }
+    <title>Teacher's vault(Dr. Sheikh Md. Rabiul Islam)</title>
+    <style>
+      body {
+        font-family: Manrope, sans-serif;
+        background-color: white;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        position: relative;
+      }
+      /* Default scrollbar styles */
+      body::-webkit-scrollbar {
+        width: 12px; /* Width of the scrollbar */
+      }
 
-          .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-          }
-            #progress-container {
+      body::-webkit-scrollbar-thumb {
+        background-color: var(
+          --scrollbar-thumb-color,
+          #ccc
+        ); /* Default thumb color */
+        border-radius: 6px; /* Rounded corners of the scrollbar thumb */
+      }
+
+      /* Dark mode scrollbar styles */
+      body.dark-mode::-webkit-scrollbar-thumb {
+        background-color: var(
+          --scrollbar-thumb-color,
+          #333
+        ); /* Dark mode thumb color */
+      }
+
+      /* Light mode scrollbar styles */
+      body.light-mode::-webkit-scrollbar-thumb {
+        background-color: var(
+          --scrollbar-thumb-color,
+          #ccc
+        ); /* Light mode thumb color */
+      }
+
+      .logo {
+        margin-top: 50px; /* Adjust margin as needed */
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .container:hover {
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+      }
+      #progress-container {
         position: fixed;
         top: 0;
         left: 0;
@@ -55,145 +93,235 @@
         }
       }
 
-
-          .title
-          {
+      .title {
         text-align: center;
         margin-top: 10px;
         margin-bottom: 10px;
         font-weight: bolder;
-          }
-          h1 {
-            text-align: center;
-            margin-bottom: 20px;
-          }
-          ul {
-            list-style-type: none;
-            padding: 0;
-          }
-          li {
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: white;
-            border-radius: 4px;
-          }
-          .delete-btn {
-            background-color: #f22c2f;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            margin-left: 10px;
-          }
-          .share-btn {
-            background-color: #00a651;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            margin-left: 10px;
-          }
-          .upload-btn, .confirm-btn {
-            width: auto;
-            height: auto;
-            border: none;
-            cursor: pointer;
-            background-size: cover;
-            display: inline-block;
-            vertical-align: middle;
-            border-radius: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-bottom:20px;
-          }
-          .upload-btn {
-            background-color: #007bff;
-            color: white;
-            transition: background-color 0.3s;
-          }
-          .confirm-btn {
-            background-color: #4CAF50; /* Green */
-            color: white;
-            transition: background-color 0.3s;
-          }
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: white;
+        border-radius: 4px;
+      }
+      .delete-btn {
+        background-color: #f22c2f;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+      .share-btn {
+        background-color: #00a651;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+      .upload-btn,
+      .confirm-btn {
+        width: auto;
+        height: auto;
+        border: none;
+        cursor: pointer;
+        background-size: cover;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+      .upload-btn {
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s;
+      }
+      .confirm-btn {
+        background-color: #4caf50; /* Green */
+        color: white;
+        transition: background-color 0.3s;
+      }
 
-          .upload-section {
-            margin-top: 20px;
-          }
-          .file-upload-input {
-            display: none;
-          }
-          .footer {
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            background-color: #ffffff;
-            padding: 10px 0;
-            font-size:12px;
-        }
+      .upload-section {
+        margin-top: 20px;
+      }
+      .file-upload-input {
+        display: none;
+      }
+      .footer {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        background-color: #ffffff;
+        padding: 10px 0;
+        font-size: 12px;
+      }
 
-        @media (width < 768px)
-        {
+      @media (width < 768px) {
         .logo {
-            display:none;
+          display: none;
         }
-            .title
-            {
-            display:none;
-            }
-            .container
-            {
-              margin-top:-20px;
-              border-radius:0px;
-            }
+        .title {
+          display: none;
+        }
+        .container {
+          margin-top: 50px;
+          border-radius: 0px;
+        }
 
-            .footer
-            {
-            font-size:10px;
-            }
+        .footer {
+          font-size: 10px;
         }
-        </style>
-    </head>
-    <body>
+        .container {
+          box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+        }
+        .container:hover {
+          box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode .container {
+        box-shadow: 0 0 100px rgba(255, 255, 255, 0.3);
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+      body.dark-mode .container:hover {
+        box-shadow: 0 0 100px rgba(255, 255, 255, 0.3);
+      }
+      }
+
+      /* Toggle Switch Styles */
+      .toggle-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #00a651;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      .darktext {
+        font-family: "Manrope", sans-serif;
+        margin-left: -90px;
+        margin-bottom: -29px;
+      }
+
+      body.dark-mode {
+        background-color: black;
+      }
+
+      body.dark-mode .container {
+        background-color: #0a0a0a;
+        color: #ffffff;
+        border: 1px solid #888;
+        border-radius: 12px;
+      }
+      body.dark-mode .container:hover {
+        box-shadow: 0 0 100px rgba(255, 255, 255, 0.3);
+      }
+      body.dark-mode h1 {
+        color: white;
+      }
+      body.dark-mode li {
+        background-color: #0a0a0a;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
     <div id="progress-container">
       <div id="progress-bar"></div>
     </div>
     <div class="logo">
-        <img src="/kuetlogo.png" alt="Logo" width="100">
+      <img src="/kuetlogo.png" alt="Logo" width="100" />
     </div>
-    <h1 class="title">
-    Teacher's <span style="color: #00a651">Vault</span>
-    </h1>
-        <div class="container">
-            <h1>My Files</h1>
-            <ul>
-            </ul>
-            <div class="upload-section">
-                <form action="/upload" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file" accept=".txt,.pdf,.doc,.docx,.jpg,.png,.gif" class="file-upload-input" id="file-upload">
-                    <label for="file-upload" class="upload-btn">Upload File</label>
-                    <button type="submit" class="confirm-btn" style="display: none;" id="confirm">Confirm</button>
-                </form>
-            </div>
-        </div>
-        <!-- Second container -->
-        <div class="container">
-            <h1>Student Corner</h1>
-            <ul>
-            </ul>
-        </div>
-        <div class="footer">
-    ©2024, Designed and developed by
-        <a
-          href="https://teamsiliconx.github.io/aboutus"
-          style="color: #00a651; text-decoration: none;"
-          >Siliconx Softwares</a
-        >(ECE, KUET). Powered by Central Computer Center(KUET). All rights reserved.
-</div>
+    <h1 class="title">Teacher's <span style="color: #00a651">Vault</span></h1>
+    <div class="container">
+      <h1>All Files</h1>
+      <ul id="all-files-list"></ul>
+      <div class="upload-section">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input
+            type="file"
+            name="file"
+            accept=".txt,.pdf,.doc,.docx,.jpg,.png,.gif"
+            class="file-upload-input"
+            id="file-upload"
+          />
+          <label for="file-upload" class="upload-btn">Upload File</label>
+          <button
+            type="submit"
+            class="confirm-btn"
+            style="display: none"
+            id="confirm"
+          >
+            Confirm
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Second container -->
+    <div class="container">
+      <h1>Student Corner</h1>
+      <ul id="shared-files-list"></ul>
+    </div>
 
-        <script>
-         window.addEventListener("load", function () {
+    <script>
+      window.addEventListener("load", function () {
         showProgressBar(); // Show progress bar on page load
       });
 
@@ -218,64 +346,188 @@
           showProgressBar(); // Show progress bar when button is clicked
         });
 
+      // Function to fetch files and update HTML
+      function fetchFiles() {
+        fetch("/api/files")
+          .then((response) => response.json())
+          .then((data) => {
+            const allFilesList = document.getElementById("all-files-list");
+            allFilesList.innerHTML = data.allFiles
+              .map(
+                (file) => `
+          <li>
+            <span>${file}</span>
+             <a href="/download/${encodeURIComponent(
+               file
+             )}" style="color: #00a651;">
+    <i class="material-icons">cloud_download</i>
+  </a>
+            <button onclick="deleteFile('${file}')" class="delete-btn">
+    <i class="material-icons">delete</i>
+  </button>
+  <button onclick="shareFile('${file}')" class="share-btn">
+    <i class="material-icons">share</i>
+          </li>
+        `
+              )
+              .join("");
 
+            const sharedFilesList =
+              document.getElementById("shared-files-list");
+            sharedFilesList.innerHTML = data.sharedFiles
+              .map(
+                (file) => `
+          <li>
+            <span>${file}</span>
+            <a href="/download-shared/${encodeURIComponent(
+              file
+            )}" style="color: #00a651;">
+    <i class="material-icons">cloud_download</i>
+  </a>
+            <button onclick="deleteSharedFile('${file}')" class="delete-btn">
+    <i class="material-icons">delete</i>
+  </button>
+          </li>
+        `
+              )
+              .join("");
+          })
+          .catch((error) => console.error("Error fetching files:", error));
+      }
 
+      // Call fetchFiles on page load
+      fetchFiles();
 
+      function deleteFile(fileName) {
+        if (confirm("Are you sure you want to delete this file?")) {
+          fetch("/delete/" + encodeURIComponent(fileName), {
+            method: "DELETE",
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to delete file");
+              }
+              fetchFiles(); // Refresh file list
+            })
+            .catch((error) => {
+              console.error("Error deleting file:", error);
+            });
+        }
+      }
 
-          function deleteFile(fileName) {
-            if (confirm("Are you sure you want to delete this file?")) {
-              fetch('/delete/' + encodeURIComponent(fileName), {
-                method: 'DELETE'
-              })
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error('Failed to delete file');
-                }
-                location.reload();
-              })
-              .catch(error => {
-                console.error('Error deleting file:', error);
-              });
-            }
+      function deleteSharedFile(fileName) {
+        if (confirm("Are you sure you want to delete this shared file?")) {
+          fetch("/delete-shared/" + encodeURIComponent(fileName), {
+            method: "DELETE",
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to delete shared file");
+              }
+              fetchFiles(); // Refresh file list
+            })
+            .catch((error) => {
+              console.error("Error deleting shared file:", error);
+            });
+        }
+      }
+
+      function shareFile(fileName) {
+        if (confirm("Are you sure you want to share this file?")) {
+          fetch("/share/" + encodeURIComponent(fileName), {
+            method: "POST",
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to share file");
+              }
+              fetchFiles(); // Refresh file list
+            })
+            .catch((error) => {
+              console.error("Error sharing file:", error);
+            });
+        }
+      }
+
+      document
+        .getElementById("file-upload")
+        .addEventListener("change", function () {
+          document.querySelector(".confirm-btn").style.display = "inline-block";
+        });
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const toggleButton = document.getElementById("theme-toggle");
+
+        // Function to set theme
+        const setTheme = (theme) => {
+          if (theme === "dark-mode") {
+            document.body.classList.add("dark-mode");
+            document.body.classList.remove("light-mode");
+            toggleButton.checked = true;
+          } else {
+            document.body.classList.remove("dark-mode");
+            document.body.classList.add("light-mode");
+            toggleButton.checked = false;
           }
+          updateScrollbarColor(theme); // Update scrollbar color based on theme
+        };
 
-          function deleteSharedFile(fileName) {
-            if (confirm("Are you sure you want to delete this shared file?")) {
-              fetch('/delete-shared/' + encodeURIComponent(fileName), {
-                method: 'DELETE'
-              })
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error('Failed to delete shared file');
-                }
-                location.reload();
-              })
-              .catch(error => {
-                console.error('Error deleting shared file:', error);
-              });
-            }
+        // Function to detect and apply system theme preference
+        const applySystemThemePreference = () => {
+          const prefersDarkScheme = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          setTheme(prefersDarkScheme ? "dark-mode" : "light-mode");
+        };
+
+        // Load user's theme preference from localStorage
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme) {
+          setTheme(currentTheme);
+        } else {
+          applySystemThemePreference(); // Apply system theme preference initially
+        }
+
+        // Listen for changes in the theme toggle button
+        toggleButton.addEventListener("change", () => {
+          const newTheme = toggleButton.checked ? "dark-mode" : "light-mode";
+          setTheme(newTheme);
+          // Save user's preference to localStorage
+          if (newTheme === "dark-mode") {
+            localStorage.setItem("theme", "dark-mode");
+          } else {
+            localStorage.removeItem("theme");
           }
+        });
 
-          function shareFile(fileName) {
-            if (confirm("Are you sure you want to share this file?")) {
-              fetch('/share/' + encodeURIComponent(fileName), {
-                method: 'POST'
-              })
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error('Failed to share file');
-                }
-                location.reload();
-              })
-              .catch(error => {
-                console.error('Error sharing file:', error);
-              });
+        // Listen for changes in system theme preference
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            if (!localStorage.getItem("theme")) {
+              // Only change if user has not set a preference
+              applySystemThemePreference();
             }
-          }
-
-          document.getElementById("file-upload").addEventListener("change", function() {
-            document.querySelector(".confirm-btn").style.display = "inline-block";
           });
-        </script>
-    </body>
-    </html>
+
+        // Function to update scrollbar color based on theme
+        const updateScrollbarColor = (theme) => {
+          // Determine the scrollbar thumb color based on the theme
+          const scrollbarThumbColor = theme === "dark-mode" ? "#333" : "#ccc";
+          // Set the scrollbar thumb color dynamically using CSS variables
+          document.documentElement.style.setProperty(
+            "--scrollbar-thumb-color",
+            scrollbarThumbColor
+          );
+        };
+      });
+    </script>
+    <div class="toggle-container">
+      <p class="darktext">Dark mode</p>
+      <label class="toggle-switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </body>
+</html>
