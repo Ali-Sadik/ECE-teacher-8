@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/ico" href="favicon.ico" />
     <title>Edit Profile</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap");
@@ -16,6 +15,34 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
+      }
+      /* Default scrollbar styles */
+      body::-webkit-scrollbar {
+        width: 12px; /* Width of the scrollbar */
+      }
+
+      body::-webkit-scrollbar-thumb {
+        background-color: var(
+          --scrollbar-thumb-color,
+          #ccc
+        ); /* Default thumb color */
+        border-radius: 6px; /* Rounded corners of the scrollbar thumb */
+      }
+
+      /* Dark mode scrollbar styles */
+      body.dark-mode::-webkit-scrollbar-thumb {
+        background-color: var(
+          --scrollbar-thumb-color,
+          #333
+        ); /* Dark mode thumb color */
+      }
+
+      /* Light mode scrollbar styles */
+      body.light-mode::-webkit-scrollbar-thumb {
+        background-color: var(
+          --scrollbar-thumb-color,
+          #ccc
+        ); /* Light mode thumb color */
       }
 
       #progress-container {
@@ -35,16 +62,16 @@
         animation: progressBarAnimation 1s forwards;
       }
       .footer {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  background-color: transparent;
-  padding: 10px 0;
-  color: black;
-  font-size: 12px;
-  position: absolute;
-}
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        background-color: transparent;
+        padding: 10px 0;
+        color: black;
+        font-size: 12px;
+        position: absolute;
+      }
 
       @keyframes progressBarAnimation {
         from {
@@ -55,13 +82,18 @@
         }
       }
 
-
       form {
         background: #ffffff;
         max-width: 400px;
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      form:hover {
+        transform: scale(1);
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
       }
 
       h1 {
@@ -80,7 +112,8 @@
         padding: 10px;
         margin-bottom: 20px;
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 4px;
+        background-color: white;
         box-sizing: border-box;
         font-size: 16px;
       }
@@ -89,8 +122,9 @@
         width: 100%;
         padding: 10px;
         margin-bottom: 20px;
+        background-color: white;
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 4px;
         box-sizing: border-box;
         font-size: 16px;
       }
@@ -101,25 +135,176 @@
         padding: 14px 20px;
         margin: 8px 0;
         border: none;
-        border-radius: 25px;
+        border-radius: 8px;
         cursor: pointer;
         width: 100%;
         font-size: 16px;
+        transition: background-color 0.3s, transform 0.3s;
       }
 
       input[type="submit"]:hover {
-        background-color: #166e41;
+        background-color: #0ad36b;
+        transform: scale(1.05);
       }
 
-      @media (width < 768px)
-      {
-        body
-        {
+      @media (width < 768px) {
+        body {
           margin-top: 20px;
         }
-        .footer{
+        .footer {
           display: none;
         }
+        body.dark-mode form {
+          background-color: #0a0a0a;
+          color: #cccccc;
+          border: 1px solid #333;
+          border-radius: 12px;
+          box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode input[type="text"]
+        {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #333;
+          border-radius: 4px;
+          background-color: #0a0a0a;
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        body.dark-mode input[type="file"] {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          background-color: #0a0a0a;
+          border: 1px solid #333;
+          border-radius: 4px;
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+      }
+      /* Toggle Switch Styles */
+      .toggle-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #00a651;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+      body.dark-mode {
+        background-color: black;
+        color: white;
+      }
+      body.dark-mode form {
+        background-color: #0a0a0a;
+        color: #cccccc;
+        border: 1px solid #333;
+        border-radius: 12px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+      }
+      body.dark-mode form:hover {
+        box-shadow: 0 0 100px rgba(255, 255, 255, 0.3);
+      }
+      body.dark-mode .footer {
+        color: white;
+      }
+      body.dark-mode input {
+        background-color: #0a0a0a;
+        color: white;
+      }
+      body.dark-mode input[type="submit"] {
+        background-color: #00a651;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      body.dark-mode input[type="submit"]:hover {
+        background-color: #0ad36b;
+        transform: scale(1.05);
+      }
+      body.dark-mode input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #0a0a0a;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      body.dark-mode input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #0a0a0a;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+
+      body.dark-mode input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        background-color: #0a0a0a;
+        border: 1px solid #333;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
       }
     </style>
   </head>
@@ -129,7 +314,7 @@
     </div>
     <form action="/submit" method="POST" enctype="multipart/form-data">
       <h1>Edit <span style="color: #00a651">Profile</span></h1>
-      <h4 style="text-align: center;">
+      <h4 style="text-align: center">
         [N.B:Please ensure that the image is uploaded with a 1:1 aspect ratio.]
       </h4>
       <label for="name">Name:</label>
@@ -160,6 +345,13 @@
         style="font-family: Manrope, sans-serif"
       />
     </form>
+    <div class="toggle-container">
+      <p class="darktext">Dark mode</p>
+      <label class="toggle-switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
     <div class="footer">
       ©2024, Designed and developed by
       <a
@@ -170,10 +362,9 @@
       >(ECE, KUET). Powered by Central Computer Center(KUET). All rights
       reserved.
     </div>
-  </body>
-  <script>
-    // Function to show progress bar for 1 second
-    function showProgressBar(callback) {
+    <script>
+      // Function to show progress bar for 1 second
+      function showProgressBar(callback) {
         // Show progress bar
         document.getElementById("progress-bar").style.display = "block";
 
@@ -189,5 +380,72 @@
         showProgressBar(); // Show progress bar on page load
       });
 
-  </script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const toggleButton = document.getElementById("theme-toggle");
+
+        // Function to set theme
+        const setTheme = (theme) => {
+          if (theme === "dark-mode") {
+            document.body.classList.add("dark-mode");
+            document.body.classList.remove("light-mode");
+            toggleButton.checked = true;
+          } else {
+            document.body.classList.remove("dark-mode");
+            document.body.classList.add("light-mode");
+            toggleButton.checked = false;
+          }
+          updateScrollbarColor(theme); // Update scrollbar color based on theme
+        };
+
+        // Function to detect and apply system theme preference
+        const applySystemThemePreference = () => {
+          const prefersDarkScheme = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          setTheme(prefersDarkScheme ? "dark-mode" : "light-mode");
+        };
+
+        // Load user's theme preference from localStorage
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme) {
+          setTheme(currentTheme);
+        } else {
+          applySystemThemePreference(); // Apply system theme preference initially
+        }
+
+        // Listen for changes in the theme toggle button
+        toggleButton.addEventListener("change", () => {
+          const newTheme = toggleButton.checked ? "dark-mode" : "light-mode";
+          setTheme(newTheme);
+          // Save user's preference to localStorage
+          if (newTheme === "dark-mode") {
+            localStorage.setItem("theme", "dark-mode");
+          } else {
+            localStorage.removeItem("theme");
+          }
+        });
+
+        // Listen for changes in system theme preference
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            if (!localStorage.getItem("theme")) {
+              // Only change if user has not set a preference
+              applySystemThemePreference();
+            }
+          });
+
+        // Function to update scrollbar color based on theme
+        const updateScrollbarColor = (theme) => {
+          // Determine the scrollbar thumb color based on the theme
+          const scrollbarThumbColor = theme === "dark-mode" ? "#333" : "#ccc";
+          // Set the scrollbar thumb color dynamically using CSS variables
+          document.documentElement.style.setProperty(
+            "--scrollbar-thumb-color",
+            scrollbarThumbColor
+          );
+        };
+      });
+    </script>
+  </body>
 </html>
